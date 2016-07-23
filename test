@@ -1,1 +1,74 @@
-一个测试文件
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="border: 1px solid"></canvas>
+<script>
+    var canvas= document.getElementById('canvas');
+    var ctx =canvas.getContext('2d');
+    var x=canvas.width/2;
+    var y=canvas.height/2;
+    var width = canvas.width;
+    var height = canvas.height;
+    //创建渐变对象
+    var grad = ctx.createLinearGradient(0,0,width,height);
+    grad.addColorStop(0,'red');
+    grad.addColorStop(.5,'yellow');
+    grad.addColorStop(1,'black')
+
+    var grad2=ctx.createRadialGradient(-100,-100,5,-100,-100,100);
+    grad2.addColorStop(0,'red');
+    grad2.addColorStop(.5,'yellow');
+    grad2.addColorStop(1,'black');
+
+    canvas.style.border='1px solid'
+    ctx.translate(x,y);
+    ctx.beginPath();
+    ctx.strokeRect(-10,-10,20,20) ;
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.fillStyle='rgba(255,0,0,.5)' ;
+    ctx.fillRect(0,0,20,20)  ;
+    ctx.fill()  ;
+    ctx.closePath();
+  ctx.beginPath();
+    ctx.arc(0,0,100,0,360*Math.PI/180,true);
+    ctx.stroke( );
+    ctx.closePath();
+
+    ctx.beginPath();
+      ctx.fillStyle=grad;
+    ctx.fillRect(0,0,500,500);
+    ctx.fill()
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.fillStyle=grad;
+    ctx.closePath();
+
+
+//    先创建图像 然后添加填充色
+    ctx.beginPath();
+    ctx.arc(-100,-100,150,0,Math.PI*2,false);   //绘制圆形路径
+    ctx.fillStyle=grad2;
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.beginPath();
+//    ctx.textAlign='left';
+//    ctx.textBaseline='top';
+    ctx.font='80px 微软雅黑' ;
+    ctx.shadowColor='black';
+    ctx.shadowOffsetX='-10';
+    ctx.shadowOffsetY='-10';
+    ctx.shadowBlur='60px'
+    ctx.fillText('你好',-100,200);
+    ctx.closePath()
+</script>
+
+</body>
+</html>
